@@ -4,11 +4,21 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def createFacebook
+      @user = User.from_omniauth(request.env['omniauth.auth'])
+    if @user
+      session[:user_id] = @user.id
+      redirect_to welcome_index_url, alert: "Welcome, #{@user.name}!"
+    else
+      redirect_to login_url, alert: "There was an error while trying to authenticate you..."
+    end
+  end
+
   def create
-  	user = User.find_by(email: params[:email])
-  	if user and user.authenticate(params[:password])
-  		session[:user_id] = user.id
-  		redirect_to welcome_index_url
+  	@user = User.find_by(email: params[:email])
+  	if @user and @user.authenticate(params[:password])
+  		session[:user_id] = @user.id
+  		redirect_to welcome_index_url, alert: "Welcome!"
   	else
   		redirect_to login_url, alert: "Invalid user/password combnation"
   	end

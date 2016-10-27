@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -25,6 +26,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.uid = Digest::MD5.hexdigest(@user.email)
+    @user.provider = "Email Registration"
 
     respond_to do |format|
       if @user.save
