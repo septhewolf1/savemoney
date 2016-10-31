@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: MyString
+  amount: 1
+  indispensable: false
+  description: MyText
+
+two:
+  user: MyString
+  amount: 1
+  indispensable: false
+  description: MyText

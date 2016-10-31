@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authorize, only: [:new, :create] #qualsiasi altro metodo prima del login salta tranne new e create
 
   # GET /users
   # GET /users.json

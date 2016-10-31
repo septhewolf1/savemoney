@@ -14,9 +14,9 @@
 				<%= label_tag :password, 'Password:' %>
 				<%= password_field_tag :password, params[:password] %>
 			</div>
-				<%= submit_tag "Login" %>
-				<%= link_to 'Registrati', new_user_path %>
-				<%= link_to 'Facebook', '/auth/facebook' %>
+				<%= submit_tag "Login", class: 'btn btn-default'%>
+				<%= link_to 'Registrati', new_user_path, class: 'btn btn-default' %>
+				<%= link_to 'Facebook', '/auth/facebook', class: 'btn btn-default' %>
 		</fieldset>
 	<% end %>
 </div>

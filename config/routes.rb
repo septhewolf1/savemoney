@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :categories
+  resources :incomes
   get 'home/index'
 
   get 'welcome/index'
