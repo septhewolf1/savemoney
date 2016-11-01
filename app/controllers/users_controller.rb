@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.uid = Digest::MD5.hexdigest(@user.email)
     @user.provider = "Email Registration"
+    @user.image_url = "https://cdn3.iconfinder.com/data/icons/rcons-user-action/32/boy-512.png"
 
     respond_to do |format|
       if @user.save
