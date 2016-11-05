@@ -1,4 +1,20 @@
 <h1>Welcome in home page after login</h1>
+
+<div class = "bg-success">
+<h2>Total Incomes:
+	<%= @totalIncome %></h2>
+</div>
+
+<div class = "bg-danger">
+<h2>Total Expenses:
+	<%= @totalExpenses %></h2>
+</div>
+
+<div class = "bg-info">
+<h2>Total:
+	<%= @total %></h2>
+</div>
+
 <%= link_to 'Income', incomes_path, class: 'btn btn-default' %>
-<%= link_to 'Expenses', incomes_path, class: 'btn btn-default' %>
+<%= link_to 'Expenses', expenses_path, class: 'btn btn-default' %>
 <%= link_to 'Category', categories_path, class: 'btn btn-default' %>

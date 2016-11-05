@@ -6,7 +6,11 @@ class User < ApplicationRecord
 	class << self
 	    def from_omniauth(auth_hash)
 	      user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
-	      user.email = auth_hash['info']['name'] #ho messo name perchè la mail non riesco a prenderla e mi da errore. da vedere con davide
+	      if auth_hash['info']['email']
+	      	user.email = auth_hash['info']['email'] #ho messo name perchè la mail non riesco a prenderla e mi da errore. da vedere con davide
+	      else
+	      	user.email = auth_hash['info']['name']
+	      end
 	      user.password = "ppppp"
 	      user.name = auth_hash['info']['name']
 	      user.location = auth_hash['info']['location']

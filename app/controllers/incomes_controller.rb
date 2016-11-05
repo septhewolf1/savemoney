@@ -4,12 +4,20 @@ class IncomesController < ApplicationController
   # GET /incomes
   # GET /incomes.json
   def index
-    @incomes = Income.all
+    @incomes = Income.where(users_id: session[:user_id]).order("date": :desc) #take all incomes of the user and order it DESC
+    #@category = Category.find(2)
   end
 
   # GET /incomes/1
   # GET /incomes/1.json
   def show
+    @income = Income.where(id: params[:id], users_id: session[:user_id]).first
+    
+      if !@income
+        respond_to do |format|
+          format.html { redirect_to incomes_url, notice: "You can't see this income with id #{params[:id]}." }
+        end
+      end
   end
 
   # GET /incomes/new
@@ -72,6 +80,6 @@ class IncomesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def income_params
-      params.require(:income).permit(:user, :amount, :indispensable, :description)
+      params.require(:income).permit(:user, :amount, :categories_id, :indispensable, :description, :date)
     end
 end

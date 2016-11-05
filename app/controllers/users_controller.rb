@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create] #qualsiasi altro metodo prima del login salta tranne new e create
+  skip_before_action :authorize, only: [:new, :create] #skip all method except new e create
 
   # GET /users
   # GET /users.json
@@ -31,11 +31,14 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        session[:user_id] = @user.id
+        #redirect_to welcome_index_url, alert: "Welcome!"
+        format.html { redirect_to welcome_index_url }
+        #format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        #redirect_to home_index_url
+        format.html { redirect_to home_index_url, notice: "Error: this user could'd be alrady created." }
+        #format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

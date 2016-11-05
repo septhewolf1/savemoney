@@ -1,10 +1,10 @@
-<%= form_for(income) do |f| %>
-  <% if income.errors.any? %>
+<%= form_for(expense) do |f| %>
+  <% if expense.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(income.errors.count, "error") %> prohibited this income from being saved:</h2>
+      <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
 
       <ul>
-      <% income.errors.full_messages.each do |message| %>
+      <% expense.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :category %>
-    <%= f.collection_select(:categories_id, Category.where(kind: ["incomes", "both"]), :id, :title) %>
+    <%= f.collection_select(:categories_id, Category.where(kind: ["expenses", "both"]), :id, :title) %>
   </div>
 
   <div class="field">

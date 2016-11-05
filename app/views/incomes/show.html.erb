@@ -12,12 +12,17 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @income.categories_id %>
+  <%= Category.find(@income.categories_id).title %>
 </p>
 
 <p>
   <strong>Description:</strong>
   <%= @income.description %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @income.date %>
 </p>
 
 <%= link_to 'Edit', edit_income_path(@income) %> |

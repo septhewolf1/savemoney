@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  indispensable: false
+  description: MyText
+  date: 2016-11-03
+
+two:
+  amount: 1
+  indispensable: false
+  description: MyText
+  date: 2016-11-03

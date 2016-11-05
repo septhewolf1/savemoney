@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028055123) do
+ActiveRecord::Schema.define(version: 20161104173711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,16 +20,31 @@ ActiveRecord::Schema.define(version: 20161028055123) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "kind",        null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.float    "amount"
+    t.boolean  "indispensable"
+    t.text     "description"
+    t.date     "date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "users_id"
+    t.integer  "categories_id"
+    t.index ["categories_id"], name: "index_expenses_on_categories_id", using: :btree
+    t.index ["users_id"], name: "index_expenses_on_users_id", using: :btree
   end
 
   create_table "incomes", force: :cascade do |t|
-    t.integer  "amount"
+    t.float    "amount"
     t.boolean  "indispensable"
     t.text     "description"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "categories_id"
     t.integer  "users_id"
+    t.date     "date"
     t.index ["categories_id"], name: "index_incomes_on_categories_id", using: :btree
     t.index ["users_id"], name: "index_incomes_on_users_id", using: :btree
   end
@@ -50,6 +65,8 @@ ActiveRecord::Schema.define(version: 20161028055123) do
     t.index ["uid"], name: "index_users_on_uid", using: :btree
   end
 
+  add_foreign_key "expenses", "categories", column: "categories_id"
+  add_foreign_key "expenses", "users", column: "users_id"
   add_foreign_key "incomes", "categories", column: "categories_id"
   add_foreign_key "incomes", "users", column: "users_id"
 end
