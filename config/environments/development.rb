@@ -4,6 +4,10 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+  
+  # I added this line to include the director fonts to the folder to look for css or fonts
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+
   config.cache_classes = false
 
   # Do not eager load code on boot.

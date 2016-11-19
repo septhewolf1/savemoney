@@ -17,11 +17,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :indispensable %>
-    <%= f.check_box :indispensable %>
-  </div>
-
-  <div class="field">
     <%= f.label :category %>
     <%= f.collection_select(:categories_id, Category.where(kind: ["expenses", "both"]), :id, :title) %>
   </div>

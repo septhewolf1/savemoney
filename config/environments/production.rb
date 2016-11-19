@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # I added this line to include the director fonts to the folder to look for css or fonts
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
